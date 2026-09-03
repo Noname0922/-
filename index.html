@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>开封 · 周末游</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{--a:#08716a;--ink:#172526;--muted:#6a7879;--bg:#f5f6f3;--line:#e4e9e4;--r:18px}*{box-sizing:border-box}body{margin:0;background:var(--bg);font:15px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC",Arial;color:var(--ink)}button,a{font:inherit;cursor:pointer;text-decoration:none;color:inherit}button{border:0}.side{position:fixed;inset:0 auto 0 0;width:230px;background:#fff;border-right:1px solid var(--line);padding:25px 14px;z-index:10}.brand{font-weight:800;font-size:19px;display:flex;gap:9px;align-items:center}.brand i{font-style:normal;background:#123b42;color:#f6d8a7;border-radius:10px;width:34px;height:34px;display:grid;place-items:center}.brand small{display:block;font-size:9px;letter-spacing:1px;color:var(--muted)}nav{display:grid;gap:4px;margin-top:36px}.nav{background:transparent;text-align:left;color:#687778;padding:11px 13px;border-radius:11px}.nav.active,.nav:hover{background:#e8f3f0;color:var(--a);font-weight:800}.side footer{position:absolute;bottom:24px;font-size:12px;color:var(--muted);padding:12px;background:#f0f4f1;border-radius:12px;left:14px;right:14px}.main{margin-left:230px}.top{height:64px;background:#fffffff0;backdrop-filter:blur(9px);border-bottom:1px solid var(--line);padding:0 34px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5}.top small{color:var(--muted)}.page{display:none;max-width:1350px;margin:auto;padding:28px 35px 54px}.page.active{display:block}.hero{height:405px;border-radius:27px;overflow:hidden;position:relative;color:white;padding:30px;display:flex;align-items:end;background:#123b42}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0a252be8,#143d4488,#143d440c);z-index:1}.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.hero div{position:relative;z-index:2;max-width:600px}.eyebrow{font-size:11px;font-weight:800;color:var(--a);letter-spacing:1.2px}.hero .eyebrow{color:#b9e3dc}.hero h1{font-size:43px;line-height:1.06;margin:6px 0 10px;letter-spacing:-1px}.hero p{margin:0;font-size:17px}.chips,.actions,.tabs{display:flex;gap:8px;flex-wrap:wrap}.chips{margin:17px 0}.chip{border:1px solid #ffffff50;background:#ffffff18;border-radius:99px;padding:4px 9px;font-size:12px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;background:var(--a);color:#fff;border-radius:10px;padding:9px 12px;font-size:13px;font-weight:800}.btn.light{background:#fff;color:var(--ink);border:1px solid var(--line)}.btn.orange{background:#e7783d}.btn.sm{padding:7px 9px;font-size:12px}.photos{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:11px;margin-top:15px}.photos figure{margin:0;height:135px;overflow:hidden;border-radius:15px;position:relative;background:#d9e6e0}.photos img,.photo img{width:100%;height:100%;object-fit:cover}.photos figcaption{position:absolute;bottom:0;color:white;font-size:12px;left:0;right:0;padding:18px 9px 7px;background:linear-gradient(transparent,#000b)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:15px}.stat,.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:15px}.stat b{display:block;font-size:20px}.stat small,.muted{color:var(--muted)}.section{margin-top:37px}.head{display:flex;justify-content:space-between;gap:15px;align-items:end;margin-bottom:16px}.head h1,.head h2{margin:3px 0 0;line-height:1.18}.tabs{overflow:auto;padding-bottom:3px}.tab{white-space:nowrap;border:1px solid var(--line);padding:8px 12px;border-radius:10px;background:#fff;color:var(--muted)}.tab.active{color:var(--a);border-color:#9dccbf;background:#eaf5f2;font-weight:800}.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}.route{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px}.route-row{display:grid;grid-template-columns:48px 1fr 24px;gap:10px;align-items:center;padding:11px 0;border-bottom:1px dashed #e1e8e2}.route-row:last-child{border:0}.time{font-size:12px;color:var(--a);font-weight:800}.route h4{margin:0;font-size:14px}.route p{margin:2px 0 0;font-size:12px;color:var(--muted)}.check{height:22px;width:22px;border:1px solid #acc3bc;border-radius:50%;background:#fff}.check.done{background:var(--a);color:#fff}.note{border-radius:var(--r);padding:20px;background:linear-gradient(140deg,#123b42,#17786e);color:#fff}.note p{color:#d6efea;font-size:13px}.progress{height:7px;border-radius:6px;background:#ffffff33}.progress i{display:block;height:100%;background:#ffc366;border-radius:6px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.spot{background:#fff;border:1px solid var(--line);border-radius:17px;overflow:hidden}.photo{height:172px;position:relative;cursor:zoom-in}.badge{position:absolute;left:9px;top:9px;background:#ffffffe8;border-radius:7px;padding:3px 6px;font-size:10px;font-weight:700}.heart{position:absolute;right:9px;top:9px;width:32px;height:32px;border-radius:50%;background:#ffffffe8;font-size:17px}.heart.on{color:#e3565a}.body{padding:13px}.body h3{font-size:16px;margin:0}.body p{font-size:12px;margin:4px 0 9px;color:var(--muted);height:38px}.facts{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}.facts span{font-size:10px;background:#f0f4f1;color:#5c6b6d;padding:3px 5px;border-radius:5px}.score{color:#ef9b49;font-size:12px}.map-layout{display:grid;grid-template-columns:1.5fr .75fr;gap:15px}.mapbox{height:630px;border-radius:20px;overflow:hidden;border:1px solid var(--line)}#mapCanvas{height:100%}.places{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px}.place{display:grid;grid-template-columns:53px 1fr auto;gap:9px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}.place img{width:53px;height:44px;object-fit:cover;border-radius:8px}.place b{font-size:13px}.place p{font-size:11px;color:var(--muted);margin:2px 0}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.transport{position:relative;overflow:hidden}.transport:after{content:"🚄";position:absolute;right:17px;top:13px;font-size:38px;opacity:.15}.transport h3{margin:0}.transport .line{background:#f0f5f2;border-radius:10px;padding:10px;font-size:12px;margin:12px 0}.food{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.food article,.hotel{overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:16px}.food img{height:135px;width:100%;object-fit:cover}.food div,.hotel div{padding:11px}.food h3,.hotel h3{margin:0;font-size:15px}.food p,.hotel p{font-size:11px;color:var(--muted);margin:3px 0 9px}.hotel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.hotel img{height:175px;width:100%;object-fit:cover}.budget{display:grid;grid-template-columns:.8fr 1.2fr;gap:15px}.budget-hero{background:#123b42;border-radius:20px;color:white;padding:22px}.budget-hero strong{display:block;font-size:36px}.budget-hero small{color:#cce5e0}.budget-hero input{width:100%;accent-color:#ffc366}.bars{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px}.bar{display:grid;grid-template-columns:62px 1fr 65px;align-items:center;gap:10px;font-size:12px;margin:13px 0}.bar i{height:9px;background:#e8efeb;border-radius:6px}.bar i b{display:block;height:100%;border-radius:6px;background:var(--a)}.bar em{font-style:normal;text-align:right;color:var(--muted)}dialog{border:0;padding:0;border-radius:22px;width:min(780px,calc(100% - 28px));box-shadow:0 20px 70px #0006}dialog::backdrop{background:#061515aa}.modal{display:grid;grid-template-columns:1fr 1fr}.modal .gallery{height:440px;background:#dce8e2;position:relative}.gallery img{height:100%;width:100%;object-fit:cover}.gallery div{position:absolute;bottom:12px;left:12px}.gallery button,.close{background:#fffd;border-radius:50%;width:30px;height:30px;font-size:18px}.modal-copy{padding:23px;position:relative}.close{position:absolute;right:12px;top:12px}.modal-copy h2{margin:5px 0}.modal-copy p{font-size:13px;color:#576668}.inside{padding:11px;background:#eef5f2;border-radius:11px;font-size:12px}.light{display:none;position:fixed;inset:0;background:#061414ed;z-index:50;align-items:center;justify-content:center;padding:22px}.light.open{display:flex}.light img{max-width:100%;max-height:93vh;border-radius:8px}.to-top{display:none;position:fixed;right:20px;bottom:20px;z-index:12;width:40px;height:40px;border-radius:50%;background:#123b42;color:#fff}.to-top.show{display:block}.mobile{display:none}
+@media(max-width:800px){.side{display:none}.main{margin:0}.top{height:60px;padding:0 16px}.top small{display:none}.page{padding:17px 15px 88px}.mobile{display:grid;position:fixed;bottom:0;left:0;right:0;height:68px;background:#fffffff0;border-top:1px solid var(--line);z-index:15;grid-template-columns:repeat(5,1fr);padding:6px}.mobile button{background:none;color:var(--muted);font-size:11px;border-radius:9px}.mobile button.active{background:#e9f5f2;color:var(--a);font-weight:800}.hero{height:440px;margin:0 -15px;border-radius:0;padding:22px 17px}.hero h1{font-size:34px}.hero p{font-size:15px}.photos{grid-template-columns:1.3fr 1fr}.photos figure{height:105px}.photos figure:last-child{display:none}.stats{grid-template-columns:1fr 1fr}.stat b{font-size:17px}.head h1{font-size:25px}.split,.two,.map-layout,.budget{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr;gap:10px}.photo{height:135px}.body{padding:10px}.food{grid-template-columns:1fr 1fr;gap:10px}.food img{height:118px}.hotel-grid{grid-template-columns:1fr}.hotel img{height:165px}.mapbox{height:410px}.places{max-height:none}.modal{grid-template-columns:1fr}.modal .gallery{height:240px}.modal-copy{padding:19px}.to-top{bottom:80px;right:15px}.route-row{grid-template-columns:43px 1fr 22px}}
+.workspace{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(340px,.7fr);gap:16px;height:calc(100vh - 120px);min-height:640px}.visual-map{min-height:0;border-radius:26px;overflow:hidden;position:relative;background:#d8e9e2;border:1px solid var(--line)}#homeMap{height:100%;width:100%}.map-float{position:absolute;z-index:400;left:18px;top:18px;right:18px;display:flex;justify-content:space-between;gap:10px;pointer-events:none}.map-float>*{pointer-events:auto}.trip-banner{background:#fffffff0;backdrop-filter:blur(8px);padding:12px 14px;border-radius:14px;box-shadow:0 5px 20px #12394120;max-width:310px}.trip-banner b{font-size:15px;display:block}.trip-banner small{color:var(--muted)}.map-chip{align-self:flex-start;background:#123b42;color:#fff;padding:8px 10px;border-radius:11px;font-size:12px}.planner{background:#fff;border:1px solid var(--line);border-radius:26px;padding:19px;overflow:auto}.planner-head{display:flex;justify-content:space-between;align-items:center}.planner-head h1{font-size:25px;line-height:1.08;margin:3px 0}.planner-photo{height:205px;border-radius:16px;overflow:hidden;position:relative;margin:16px 0}.planner-photo img{height:100%;width:100%;object-fit:cover}.planner-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,#06191999)}.planner-photo div{position:absolute;z-index:1;bottom:13px;left:13px;color:white}.planner-photo b{font-size:18px;display:block}.planner-photo small{color:#e1efeb}.plan-tabs{display:flex;border-bottom:1px solid var(--line);margin-top:4px}.plan-tabs button{flex:1;background:transparent;padding:10px 4px;color:var(--muted);font-size:12px;border-bottom:2px solid transparent}.plan-tabs button.active{color:var(--a);border-color:var(--a);font-weight:800}.plan-steps{margin:9px 0}.plan-step{display:grid;grid-template-columns:38px 1fr 25px;gap:8px;padding:9px 0;border-bottom:1px solid #edf0ed;align-items:center}.plan-step strong{font-size:11px;color:var(--a)}.plan-step b{font-size:13px;display:block}.plan-step small{font-size:11px;color:var(--muted)}.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.quick{border:1px solid var(--line);background:#f8faf8;border-radius:12px;padding:10px;text-align:left}.quick b{display:block;font-size:12px}.quick span{font-size:11px;color:var(--muted)}.product-title{display:none}@media(max-width:800px){.workspace{display:block;height:auto;min-height:0;margin:-17px -15px 0}.visual-map{height:54vh;min-height:390px;border-radius:0}.planner{border-radius:24px 24px 0 0;margin-top:-25px;position:relative;z-index:401;padding:17px;max-height:none}.planner-photo{height:170px}.map-float{top:14px;left:14px;right:14px}.trip-banner{max-width:255px}.product-title{display:block}.hero,.photos,.stats,#home .section{display:none}}
+</style>
+</head>
+<body>
+<aside class="side">
+<div class="brand">
+<i>汴</i>
+<div>开封 · 周末游<small>TRAVEL PLANNER</small>
+</div>
+</div>
+<nav id="desktop">
+<button class="nav active" data-v="home">⌂　首页</button>
+<button class="nav" data-v="itinerary">◷　行程</button>
+<button class="nav" data-v="spots">◉　景点</button>
+<button class="nav" data-v="food">♨　美食</button>
+<button class="nav" data-v="stay">▣　住宿</button>
+<button class="nav" data-v="map">⌖　地图</button>
+<button class="nav" data-v="budget">◔　预算</button>
+</nav>
+<footer>
+<b>9.11 — 9.13</b>
+<br>邯郸 → 开封 · 4 人同行</footer>
+</aside>
+<main class="main">
+<header class="top">
+<small id="crumb">旅行规划 / 首页</small>
+<div>
+<button class="btn light sm" onclick="go('my')">♡ <span id="fc">0</span>　我的行程</button>
+</div>
+</header>
+<section class="page active" id="home">
+<div class="hero">
+<img referrerpolicy="no-referrer" src="https://youimg1.c-ctrip.com/target/0100a1200087eg92r7AD8_D_10000_1200.jpg?proc=autoorient">
+<div>
+<span class="eyebrow">KAIFENG · WEEKEND PLAN</span>
+<h1>2026 开封<br>周末亲子游</h1>
+<p>两天半，带孩子把开封玩明白</p>
+<div class="chips">
+<span class="chip">9.11 晚出发 → 9.13 下午返程</span>
+<span class="chip">3 成人 + 1 儿童</span>
+<span class="chip">¥600–1000 / 人</span>
+</div>
+<div class="actions">
+<button class="btn" onclick="go('itinerary')">查看完整行程</button>
+<button class="btn light" onclick="go('map')">⌖ 开始导航</button>
+</div>
+</div>
+</div>
+<div class="photos">
+<figure>
+<img referrerpolicy="no-referrer" src="https://youimg1.c-ctrip.com/target/0106y12000613scpc2557_D_10000_1200.jpg?proc=autoorient">
+<figcaption>开封府 · 周日轻松逛</figcaption>
+</figure>
+<figure>
+<img referrerpolicy="no-referrer" src="https://youimg1.c-ctrip.com/target/10040t000000ikimuD02A_D_10000_1200.jpg?proc=autoorient">
+<figcaption>万岁山 · 亲子备选</figcaption>
+</figure>
+<figure>
+<img referrerpolicy="no-referrer" src="https://youimg1.c-ctrip.com/target/0105b120009cyo8jnF2C9_W_10000_1200.jpg?proc=autoorient">
+<figcaption>鼓楼夜市 · 烟火收尾</figcaption>
+</figure>
+</div>
+<div class="stats">
+<div class="stat">
+<b>2.5 天</b>
+<small>周五晚抵达</small>
+</div>
+<div class="stat">
+<b>¥3,000–3,900</b>
+<small>四人预计</small>
+</div>
+<div class="stat">
+<b>清园 + 开封府</b>
+<small>首推组合</small>
+</div>
+<div class="stat">
+<b>鼓楼片区</b>
+<small>住得最顺路</small>
+</div>
+</div>
+<div class="section">
+<div class="head">
+<div>
+<span class="eyebrow">TODAY'S PLAN</span>
+<h2>行程一眼看懂</h2>
+</div>
+<button class="btn light sm" onclick="go('itinerary')">全部行程 →</button>
+</div>
+<div id="homeTabs" class="tabs">
+</div>
+<div id="homeRoute" class="split">
+</div>
+</div>
+</section>
+<section class="page" id="itinerary">
+<div class="head">
+<div>
+<span class="eyebrow">ITINERARY</span>
+<h1>我的旅行路线</h1>
+<p class="muted">节点可打勾完成；景点节点可打开详情。</p>
+</div>
+<button class="btn light" onclick="go('map')">⌖ 地图联动</button>
+</div>
+<div class="two">
+<article class="card transport">
+<h3>邯郸 → 开封</h3>
+<p class="muted">9月11日 · 周五晚</p>
+<div class="line">优先筛选邯郸东 → 开封北直达；不合适再经郑州东换乘，换乘至少留 45 分钟。</div>
+<a class="btn" target="_blank" href="https://www.12306.cn/">12306 查询实时车次</a>
+</article>
+<article class="card transport">
+<h3>开封 → 邯郸</h3>
+<p class="muted">9月13日 · 周日下午</p>
+<div class="line">优先选 15:00–18:00 发车；鼓楼到开封北站预留 75–90 分钟。</div>
+<a class="btn" target="_blank" href="https://www.12306.cn/">12306 查询返程车次</a>
+</article>
+</div>
+<div class="section">
+<div id="routeTabs" class="tabs">
+</div>
+<div id="routePanel" class="route" style="margin-top:12px">
+</div>
+</div>
+<div class="section card">
+<span class="eyebrow">PARENTING NOTE</span>
+<h2>带娃提醒</h2>
+<p>
+<b>周六体力消耗：★★★★☆</b>　清明上河园面积大，午间坐 40 分钟、17:30 回酒店短休；孩子明显更爱互动演出时，用万岁山替换清园，不要同日叠加。</p>
+</div>
+</section>
+<section class="page" id="spots">
+<div class="head">
+<div>
+<span class="eyebrow">ATTRACTIONS</span>
+<h1>景点，按兴趣选</h1>
+<p class="muted">点击卡片查看内部路线、提醒与地图导航。</p>
+</div>
+<button class="btn light" onclick="go('map')">查看地图</button>
+</div>
+<div class="grid" id="spotGrid">
+</div>
+</section>
+<section class="page" id="map">
+<div class="head">
+<div>
+<span class="eyebrow">LIVE MAP</span>
+<h1>地图 + 行程联动</h1>
+<p class="muted">点击标记或地点卡，查看景点详情与真实导航链接。</p>
+</div>
+<a class="btn light" target="_blank" href="https://ditu.amap.com/search?query=开封清明上河园">在高德打开</a>
+</div>
+<div class="map-layout">
+<div class="mapbox">
+<div id="mapCanvas">
+</div>
+</div>
+<aside class="places">
+<h3>本次路线地点</h3>
+<div id="placeList">
+</div>
+</aside>
+</div>
+</section>
+<section class="page" id="food">
+<div class="head">
+<div>
+<span class="eyebrow">FOOD GUIDE</span>
+<h1>开封必吃榜</h1>
+<p class="muted">参考价格会变化；点“去吃这里”可直接搜索高德。</p>
+</div>
+</div>
+<div class="food" id="foodGrid">
+</div>
+<div class="section two">
+<article class="card">
+<img style="width:100%;height:160px;object-fit:cover;border-radius:12px" referrerpolicy="no-referrer" src="https://youimg1.c-ctrip.com/target/0105b120009cyo8jnF2C9_W_10000_1200.jpg?proc=autoorient">
+<h3>鼓楼夜市　<span class="score">★★★★★</span>
+</h3>
+<p class="muted">第一次只选一个：推荐鼓楼。中心位置、摊位集中，饭后可逛书店街。</p>
+<a class="btn sm" target="_blank" href="https://ditu.amap.com/search?query=开封鼓楼夜市">高德导航</a>
+</article>
+<article class="card">
+<img style="width:100%;height:160px;object-fit:cover;border-radius:12px" src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1000&q=80">
+<h3>西司夜市　<span class="score">★★★★☆</span>
+</h3>
+<p class="muted">靠近包公湖，本地烟火感更强；只有一晚时不必两个都去。</p>
+<a class="btn sm" target="_blank" href="https://ditu.amap.com/search?query=开封西司夜市">高德导航</a>
+</article>
+</div>
+</section>
+<section class="page" id="stay">
+<div class="head">
+<div>
+<span class="eyebrow">STAY</span>
+<h1>住在鼓楼片区，最省路</h1>
+<p class="muted">以下是订房策略，不虚构酒店库存；下单前确认四人入住规则。</p>
+</div>
+<a class="btn light" target="_blank" href="https://hotels.ctrip.com/hotels/list?city=101&keyword=%E5%BC%80%E5%B0%81%E9%BC%93%E6%A5%BC">查看实时酒店</a>
+</div>
+<div class="hotel-grid">
+<article class="hotel">
+<img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=85">
+<div>
+<h3>方案 A · 家庭房 / 双大床</h3>
+<p>参考 ¥380–580 / 晚。照顾孩子方便；确认床宽、早餐人数与是否可住 4 人。</p>
+<a class="btn sm" target="_blank" href="https://hotels.ctrip.com/hotels/list?city=101&keyword=%E5%BC%80%E5%B0%81%E9%BC%93%E6%A5%BC">查看酒店</a>
+</div>
+</article>
+<article class="hotel">
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=85">
+<div>
+<h3>方案 B · 两间标准间</h3>
+<p>参考 ¥450–700 / 晚。成人休息更好，价格相差不大时体验优于硬挤一间。</p>
+<a class="btn sm" target="_blank" href="https://hotels.ctrip.com/hotels/list?city=101&keyword=%E5%BC%80%E5%B0%81%E9%BC%93%E6%A5%BC">查看酒店</a>
+</div>
+</article>
+<article class="hotel">
+<img src="https://images.unsplash.com/photo-1601918774946-25832a4be0d6?auto=format&fit=crop&w=900&q=85">
+<div>
+<h3>筛选清单</h3>
+<p>选鼓楼广场 / 书店街 / 开封府附近；近 30 天高分、电梯、可寄存、可取消。</p>
+<a class="btn sm" target="_blank" href="https://ditu.amap.com/search?query=开封鼓楼广场">高德位置</a>
+</div>
+</article>
+</div>
+</section>
+<section class="page" id="budget">
+<div class="head">
+<div>
+<span class="eyebrow">BUDGET</span>
+<h1>预算仪表盘</h1>
+<p class="muted">调节游玩强度，实时计算四人总预算与人均参考。</p>
+</div>
+</div>
+<div class="budget">
+<article class="budget-hero">本次旅行预计<strong id="total">¥3,420</strong>
+<small id="per">人均约 ¥855 · 目标 ¥600–1,000 / 人</small>
+<p>游玩强度：<b id="level">舒适</b>
+</p>
+<input id="range" type="range" min="0" max="2" value="1">
+</article>
+<article class="bars" id="bars">
+</article>
+</div>
+<div class="section card">
+<h3>省钱建议</h3>
+<p>景点二选一；4 人中短途打车分摊；夜市先逛后点、小份分食；订可取消房比较家庭房与双标。</p>
+</div>
+</section>
+<section class="page" id="my">
+<div class="head">
+<div>
+<span class="eyebrow">MY TRIP</span>
+<h1>我的行程</h1>
+<p class="muted">收藏、加入行程与完成状态保存在本机浏览器。</p>
+</div>
+<button class="btn light" id="clear">清空本机记录</button>
+</div>
+<div class="two">
+<div class="card">
+<h3>已加入行程</h3>
+<div id="plans">
+</div>
+</div>
+<div class="card">
+<h3>我的收藏</h3>
+<div id="favs">
+</div>
+</div>
+</div>
+</section>
+</main>
+<nav class="mobile" id="mobile">
+<button class="active" data-v="home">⌂<br>首页</button>
+<button data-v="itinerary">◷<br>行程</button>
+<button data-v="map">⌖<br>地图</button>
+<button data-v="food">♨<br>美食</button>
+<button data-v="my">◉<br>我的</button>
+</nav>
+<button class="to-top" id="up">↑</button>
+<div class="light" id="light">
+<img id="lightimg">
+</div>
+<dialog id="modal">
+<div class="modal">
+<div class="gallery">
+<img id="mimg">
+<div>
+<button id="prev">←</button>
+<button id="next">→</button>
+</div>
+</div>
+<div class="modal-copy">
+<button class="close" id="close">×</button>
+<span class="eyebrow" id="mtype">
+</span>
+<h2 id="mtitle">
+</h2>
+<div class="score" id="mscore">
+</div>
+<p id="mintro">
+</p>
+<div class="facts" id="mfacts">
+</div>
+<div class="inside">
+<b>景区内部游玩路线</b>
+<br>
+<span id="mroute">
+</span>
+</div>
+<p id="mnote">
+</p>
+<div class="actions">
+<button class="btn" id="add">加入我的行程</button>
+<a class="btn light" id="amap" target="_blank">高德导航</a>
+<a class="btn light" id="baidu" target="_blank">百度地图</a>
+</div>
+</div>
+</div>
+</dialog>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+<script>
+const P={q:'https://youimg1.c-ctrip.com/target/0100a1200087eg92r7AD8_D_10000_1200.jpg?proc=autoorient',k:'https://youimg1.c-ctrip.com/target/0106y12000613scpc2557_D_10000_1200.jpg?proc=autoorient',w:'https://youimg1.c-ctrip.com/target/10040t000000ikimuD02A_D_10000_1200.jpg?proc=autoorient',d:'https://youimg1.c-ctrip.com/target/0105b120009cyo8jnF2C9_W_10000_1200.jpg?proc=autoorient',x:'https://images.unsplash.com/photo-1548919973-5cef591cdbc9?auto=format&fit=crop&w=1000&q=85',t:'https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1000&q=85',m:'https://images.unsplash.com/photo-1564399579883-451a5d44ec08?auto=format&fit=crop&w=1000&q=85',l:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=85'};
+const S=[['q','清明上河园','核心必去 · 宋文化主题园','4.8','成人参考 ¥120 起','6–8 小时','儿童友好 ★★★★★',34.809,114.297,P.q,'以《清明上河图》为蓝本的宋文化主题园，周六只玩它，体验最完整。','入口 → 虹桥拍照 → 宋代街市 → 看 2–3 场当天演出 → 汴河水景 → 儿童体验 → 出口','演出与夜间场次会变动；到园先拍节目单，孩子累了就提前撤。'],['w','万岁山大宋武侠城','亲子娱乐 · 清园替换项','4.7','票价以官方为准','5–7 小时','儿童友好 ★★★★★',34.823,114.310,P.w,'武侠实景剧、NPC 互动与热闹氛围更强；孩子爱互动时替换清园。','入园看节目单 → 主秀 → 古街互动 → 午餐休息 → 1–2 场演出','周末人流可能大，别追所有节目；不与清园同日叠加。'],['k','开封府','周日上午 · 府衙文化','4.6','全价参考 ¥65','2–2.5 小时','儿童友好 ★★★★☆',34.794,114.347,P.k,'重点是看开衙、包公断案等现场演出，而不是硬逛建筑。','府门广场 → 大堂断案 → 明镜湖 → 英武楼 → 题名碑','公开节目常有 9:00 开衙、9:30 断案；以当天公示为准。'],['x','大相国寺','有时间再去 · 千年古刹','4.6','票价以公示为准','1–1.5 小时','儿童友好 ★★★☆☆',34.800,114.351,P.x,'市中心皇家古刹，适合与鼓楼片区顺路组合。','山门 → 天王殿 → 大雄宝殿 → 八角琉璃殿 → 罗汉殿','不建议压缩周日返程余量专程加塞。'],['d','鼓楼夜市','第一次必吃 · 夜间烟火','4.7','¥8–45 / 份','1.5–2 小时','儿童友好 ★★★★☆',34.799,114.348,P.d,'城市中心最方便的夜市，逛完可步行去书店街。','先绕场比价 → 小吃分食 → 杏仁茶 → 书店街 → 酒店','热饮、灌汤包注意烫；孩子不要离开成人视线。'],['xis','西司夜市','第二选择 · 本地烟火','4.5','¥8–40 / 份','1–1.5 小时','儿童友好 ★★★★☆',34.789,114.337,P.l,'包公湖附近的市井夜市，适合第二晚或住在附近。','包公湖一侧进 → 小吃分食 → 湖边夜景 → 返回','只有一晚夜市时，鼓楼更顺路。'],['t','铁塔景区','文化备选 · 千年琉璃塔','4.6','票价以公示为准','1.5–2 小时','儿童友好 ★★★☆☆',34.821,114.367,P.t,'以北宋铁塔为核心的安静公园，适合古建爱好者。','入口 → 铁塔外观 → 园内小径 → 展示区 → 离园','离主住宿区较远，本次主线不建议额外塞入。'],['b','包公祠','小而精 · 包公湖畔','4.2','成人参考 ¥30','45–75 分钟','儿童友好 ★★★☆☆',34.789,114.338,P.l,'纪念包拯的仿宋祠堂，体量小，适合喜欢包公文化时选择。','大门 → 大殿铜像 → 二殿碑刻 → 配殿 → 包公湖','不要与开封府、博物馆全塞进同一上午。'],['m','开封博物馆','雨天备选 · 需预约','4.8','通常免费预约','2–3 小时','儿童友好 ★★★★☆',34.768,114.322,P.m,'八朝古都与清明上河图专题展，适合雨天和历史爱好者。','预约入馆 → 八朝古都展 → 清明上河图专题 → 文创','常规周一闭馆，预约与开放以官方渠道为准。']].map(x=>({id:x[0],name:x[1],type:x[2],rating:x[3],price:x[4],time:x[5],kid:x[6],lat:x[7],lng:x[8],img:x[9],intro:x[10],route:x[11],note:x[12],imgs:[x[9],x[9]]}));
+const R=[[['周五','邯郸 → 开封','晚间高铁，实时车次见 12306'],['到达','开封北站 → 酒店','打车约 25–35 分钟'],['若早','鼓楼夜市','21:30 前到酒店才去','d']],[['08:40','酒店 → 清明上河园','打车约 15–20 分钟；先拍节目单','q'],['09:00','清明上河园','虹桥、宋街、互动演出','q'],['12:00','午餐 + 休息','园内简餐，坐 40 分钟'],['17:30','酒店短休','洗漱、充电、躺一会'],['19:00','鼓楼夜市 + 书店街','小吃分食，步行回酒店','d']],[['08:30','退房寄存行李','贵重物品随身'],['08:40','开封府','争取赶开衙 / 包公断案','k'],['11:10','鼓楼片区午餐','不加新景点'],['12:30','取行李 → 开封北站','预留 75–90 分钟'],['15:00+','开封 → 邯郸','实时车次以 12306 为准']]];let fav=new Set(JSON.parse(localStorage.kff||'[]')),plan=new Set(JSON.parse(localStorage.kfp||'[]')),done=new Set(JSON.parse(localStorage.kfd||'[]')),day=1,cur,idx=0,mp,ready=false;const $=q=>document.querySelector(q),get=id=>S.find(x=>x.id==id),save=()=>{localStorage.kff=JSON.stringify([...fav]);localStorage.kfp=JSON.stringify([...plan]);localStorage.kfd=JSON.stringify([...done]);renderMy();$('#fc').textContent=fav.size};function go(v){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id==v));document.querySelectorAll('[data-v]').forEach(x=>x.classList.toggle('active',x.dataset.v==v));$('#crumb').textContent='旅行规划 / '+({home:'首页',itinerary:'行程',spots:'景点',food:'美食',stay:'住宿',map:'地图',budget:'预算',my:'我的行程'}[v]);if(v=='map')setTimeout(initMap,80);scrollTo({top:0,behavior:'smooth'})}window.go=go;const amap=s=>`https://uri.amap.com/navigation?to=${s.lng},${s.lat},${encodeURIComponent(s.name)}&mode=car&callnative=1`,baidu=s=>`https://api.map.baidu.com/marker?location=${s.lat},${s.lng}&title=${encodeURIComponent(s.name)}&output=html`;
+function tabs(){let z=['9月11日 · 周五','9月12日 · 周六','9月13日 · 周日'];['homeTabs','routeTabs'].forEach(id=>$('#'+id).innerHTML=z.map((x,i)=>`<button class="tab ${i==day?'active':''}" onclick="setDay(${i})">${x}</button>`).join(''));routes()}function setDay(i){day=i;tabs()}window.setDay=setDay;function rows(){return R[day].map((x,i)=>`<div class="route-row">
+<span class="time">${x[0]}</span>
+<div ${x[3]?`onclick="show('${x[3]}')" style="cursor:pointer"`:''}>
+<h4>${x[1]}</h4>
+<p>${x[2]}</p>
+</div>
+<button class="check ${done.has(day+'-'+i)?'done':''}" onclick="toggle(${i})">${done.has(day+'-'+i)?'✓':''}</button>
+</div>`).join('')}function routes(){let n=[...done].filter(x=>x.startsWith(day+'-')).length,p=Math.round(n/R[day].length*100);$('#homeRoute').innerHTML=`<div class="route">${rows()}</div>
+<div class="note">
+<span class="eyebrow" style="color:#bce4de">DAY ${day+1}</span>
+<h2>${day==1?'宋文化 + 夜市，不赶两个大景区':'做好一件事，再出发'}</h2>
+<p>${day==1?'把体力留给演出和夜市；午间、傍晚都有休息。':'每个节点都留有余量，孩子累了可跳过备选。'}</p>
+<div class="progress">
+<i style="width:${p}%">
+</i>
+</div>
+<small>完成进度 ${p}%</small>
+</div>`;$('#routePanel').innerHTML=rows()}function toggle(i){let k=day+'-'+i;done.has(k)?done.delete(k):done.add(k);save();routes()}window.toggle=toggle;
+function spots(){$('#spotGrid').innerHTML=S.map(s=>`<article class="spot">
+<div class="photo" onclick="light('${s.img}')">
+<img referrerpolicy="no-referrer" src="${s.img}" alt="${s.name}">
+<span class="badge">${s.type}</span>
+<button class="heart ${fav.has(s.id)?'on':''}" onclick="event.stopPropagation();heart('${s.id}')">${fav.has(s.id)?'♥':'♡'}</button>
+</div>
+<div class="body">
+<h3>${s.name} <span class="score">★${s.rating}</span>
+</h3>
+<p>${s.intro}</p>
+<div class="facts">
+<span>${s.time}</span>
+<span>${s.kid}</span>
+</div>
+<div class="actions">
+<button class="btn sm" onclick="show('${s.id}')">查看详情</button>
+<a class="btn light sm" target="_blank" href="${amap(s)}">导航</a>
+</div>
+</div>
+</article>`).join('')}function heart(id){fav.has(id)?fav.delete(id):fav.add(id);save();spots()}window.heart=heart;
+function show(id){cur=get(id);idx=0;paint();$('#modal').showModal()}window.show=show;function paint(){let s=cur;$('#mimg').src=s.imgs[idx];$('#mtype').textContent=s.type;$('#mtitle').textContent=s.name;$('#mscore').textContent='★ '+s.rating+' · '+s.kid;$('#mintro').textContent=s.intro;$('#mfacts').innerHTML=`<span>${s.time}</span>
+<span>${s.price}</span>`;$('#mroute').textContent=s.route;$('#mnote').textContent='出行提醒：'+s.note;$('#add').textContent=plan.has(s.id)?'已加入行程 ✓':'加入我的行程';$('#amap').href=amap(s);$('#baidu').href=baidu(s)}$('#close').onclick=()=>$('#modal').close();$('#prev').onclick=()=>{idx=(idx+cur.imgs.length-1)%cur.imgs.length;paint()};$('#next').onclick=()=>{idx=(idx+1)%cur.imgs.length;paint()};$('#add').onclick=()=>{plan.has(cur.id)?plan.delete(cur.id):plan.add(cur.id);save();paint()};
+function initMap(){if(ready){mp.invalidateSize();return}mp=L.map('mapCanvas').setView([34.799,114.337],13);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'}).addTo(mp);S.forEach(s=>L.marker([s.lat,s.lng]).addTo(mp).bindPopup(`<img src="${s.img}" style="width:160px;height:65px;object-fit:cover">
+<br>
+<b>${s.name}</b>
+<br>
+<button onclick="show('${s.id}')">查看详情</button>　<a target="_blank" href="${amap(s)}">导航</a>`));ready=true;$('#placeList').innerHTML=S.map(s=>`<div class="place" onclick="focus('${s.id}')">
+<img src="${s.img}">
+<div>
+<b>${s.name}</b>
+<p>${s.time} · ${s.type}</p>
+</div>
+<span>›</span>
+</div>`).join('')}function focus(id){let s=get(id);initMap();mp.setView([s.lat,s.lng],15);setTimeout(()=>show(id),180)}window.focus=focus;
+const F=[['灌汤包','鲜香 / 汤汁丰富','¥20–45','★★★★☆','https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=700&q=85'],['羊肉炕馍','酥香 / 咸鲜','¥12–25','★★★☆☆','https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=700&q=85'],['炒凉粉','软糯 / 微辣可调','¥8–15','★★★★☆','https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=85'],['鲤鱼焙面','酸甜 / 宴菜','¥80–160','★★★☆☆','https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85'],['桶子鸡','咸香 / 肉嫩','¥35–80','★★★★☆','https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=700&q=85'],['花生糕','酥松 / 香甜','¥20–50','★★★★★','https://images.unsplash.com/photo-1605196560547-1a91a6b07d02?auto=format&fit=crop&w=700&q=85'],['杏仁茶','温热 / 香甜','¥10–20','★★★★☆','https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=700&q=85'],['胡辣汤','胡椒香 / 暖胃','¥8–18','★★★☆☆','https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=700&q=85']];$('#foodGrid').innerHTML=F.map(f=>`<article>
+<img src="${f[4]}">
+<div>
+<h3>${f[0]} <span class="score">★★★★★</span>
+</h3>
+<p>${f[1]} · ${f[2]}<br>儿童适合度 ${f[3]}</p>
+<a class="btn light sm" target="_blank" href="https://ditu.amap.com/search?query=${encodeURIComponent('开封 '+f[0])}">去吃这里</a>
+</div>
+</article>`).join('');
+const B=[['交通',[900,1200,1600]],['住宿',[380,520,700]],['门票',[300,470,720]],['餐饮',[700,900,1150]],['市内交通',[120,180,260]],['其他',[100,150,220]]];function budget(){let v=+$('#range').value,arr=B.map(x=>[x[0],x[1][v]]),sum=arr.reduce((a,x)=>a+x[1],0),max=Math.max(...arr.map(x=>x[1]));$('#total').textContent='¥'+sum.toLocaleString();$('#per').textContent='人均约 ¥'+Math.round(sum/4)+' · 目标 ¥600–1,000 / 人';$('#level').textContent=['省钱','舒适','丰富'][v];$('#bars').innerHTML='<h3>四人费用构成</h3>'+arr.map(x=>`<div class="bar">
+<span>${x[0]}</span>
+<i>
+<b style="width:${x[1]/max*100}%">
+</b>
+</i>
+<em>¥${x[1]}</em>
+</div>`).join('')}$('#range').oninput=budget;
+function renderMy(){let p=[...plan].map(get).filter(Boolean),f=[...fav].map(get).filter(Boolean),mk=a=>a.length?a.map(s=>`<div class="place" onclick="show('${s.id}')">
+<img src="${s.img}">
+<div>
+<b>${s.name}</b>
+<p>${s.time}</p>
+</div>
+<span>›</span>
+</div>`).join(''):'<p class="muted">还没有记录。到景点详情点击“加入我的行程”或收藏。</p>';$('#plans').innerHTML=mk(p);$('#favs').innerHTML=mk(f)}function light(src){$('#lightimg').src=src;$('#light').classList.add('open')}window.light=light;$('#light').onclick=()=>$('#light').classList.remove('open');document.querySelectorAll('[data-v]').forEach(x=>x.onclick=()=>go(x.dataset.v));$('#clear').onclick=()=>{if(confirm('清空本设备的收藏、行程和完成记录？')){fav.clear();plan.clear();done.clear();save();spots();routes()}};$('#up').onclick=()=>scrollTo({top:0,behavior:'smooth'});onscroll=()=>$('#up').classList.toggle('show',scrollY>400);tabs();spots();renderMy();save();budget();
+</script>
+</body>
+</html>
