@@ -1,0 +1,55 @@
+{
+  "name": "ghost-prompter",
+  "productName": "搜狗输入法",
+  "version": "1.0.0",
+  "description": "本地离线桌面提词器：无边框置顶窗口、三档独立透明度、全局快捷键、侧边栏目录、多格式导入与平滑自动滚动。",
+  "main": "src/main/main.js",
+  "author": "GhostPrompter",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "smoke": "electron . --smoke",
+    "check": "node tools/check-syntax.js",
+    "dist": "electron-builder --win portable",
+    "dist:dir": "electron-builder --win --dir",
+    "pack": "npm run check && npm run dist"
+  },
+  "dependencies": {
+    "jszip": "3.10.1",
+    "pdf-parse": "1.1.1"
+  },
+  "devDependencies": {
+    "electron": "31.7.7",
+    "electron-builder": "24.13.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "build": {
+    "appId": "com.ghostprompter.app",
+    "productName": "搜狗输入法",
+    "files": [
+      "src/**/*",
+      "package.json",
+      "build/icon.ico",
+      "build/icon.png",
+      "build/icon-32.png"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "portable": {
+      "artifactName": "搜狗输入法.exe"
+    }
+  }
+}
